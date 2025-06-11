@@ -2,10 +2,180 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Type Animation Tool</title>
+    <title>FONTASTIC</title>
+    <link rel="icon" href="/icons/favicon.ico" type="favicon.ico" />
+    <link rel="stylesheet" href="styles.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/p5.capture@1.4.1/dist/p5.capture.umd.min.js"></script>
-    <script src="sketch.js"></script>
+    <script src="main.js"></script>
+    <script src="capture.js"></script>
+    <script src="preset.js"></script>
+    <script src="animate.js"></script>
+    <script src="ui.js"></script>
   </head>
-  <body></body>
+  <body>
+    <div id="start-screen">
+      <div class="start-content">
+        <h3>welcome to my</h3>
+        <h1><span class="flipped">F</span>ONTASTIC</h1>
+        <h3>generative tool</h3>
+        <button id="start-button">Start</button>
+        <h3 id="copyright">© lukas hecht</h3>
+      </div>
+    </div>
+    <div id="layout-grid">
+      <div class="ui-container">
+        <div class="headline"><span class="flipped">F</span>ONTASTIC</div>
+        <div class="control-group preset-controls">
+          <h3>Presets</h3>
+          <button id="save-preset">
+            <img src="icons/save.png" width="40" height="40" />
+          </button>
+          <button id="delete-preset">
+            <img src="icons/delete.png" width="40" height="40" />
+          </button>
+          <select id="preset-select"></select>
+        </div>
+        <div class="control-group">
+          <h3>Canvas</h3>
+          <div class="control-row-2grid">
+            <label for="ratio-select">ratio</label>
+            <select id="ratio-select"></select>
+          </div>
+          <div class="color-input-wrapper">
+            <label for="color-bg">colour</label>
+            <span class="color-label">bg</span>
+            <input type="color" id="color-bg" />
+          </div>
+          <div class="color-input-wrapper">
+            <div></div>
+            <span class="color-label">text</span>
+            <input type="color" id="color-text" />
+          </div>
+        </div>
+        <div class="control-group">
+          <h3>Text</h3>
+          <div class="control-row-2grid">
+            <label for="text-input">input</label>
+            <input type="text" id="text-input" />
+          </div>
+
+          <div class="control-row">
+            <label for="font-dropdown">font</label>
+            <input type="file" id="font-upload" style="display: none" />
+            <button
+              class="font-upload-btn"
+              onclick="document.getElementById('font-upload').click()"
+            >
+              <img src="icons/upload.png" width="40" height="40" />
+            </button>
+            <select id="font-dropdown">
+              <option value="Dancing Lines">dancing lines</option>
+              <option value="Arial">arial</option>
+            </select>
+          </div>
+
+          <div class="control-row">
+            <label for="line-count">line count</label>
+            <span id="line-count-value">16</span>
+            <input type="range" id="line-count" />
+          </div>
+
+          <div class="control-row">
+            <label for="spacing">spacing</label>
+            <span id="spacing-value">47</span>
+            <input type="range" id="spacing" />
+          </div>
+
+          <div class="control-row">
+            <label for="base-size">base size</label>
+            <span id="base-size-value">29</span>
+            <input type="range" id="base-size" />
+          </div>
+
+          <div class="control-row">
+            <label for="wave-height">wave height</label>
+            <span id="wave-height-value">20</span>
+            <input type="range" id="wave-height" />
+          </div>
+
+          <div class="control-row">
+            <label for="line-spacing">line spacing</label>
+            <span id="line-spacing-value">39</span>
+            <input type="range" id="line-spacing" />
+          </div>
+        </div>
+        <div class="control-group">
+          <h3>Motion</h3>
+          <div class="control-row-2grid">
+            <label for="mode-select">mode</label>
+            <select id="mode-select">
+              <option value="Dancing Lines">dancing lines</option>
+              <option value="Typo Drift">typo drift</option>
+            </select>
+          </div>
+
+          <div class="control-row">
+            <label for="animation-speed">speed</label>
+            <span id="speed-value">4.0</span>
+            <input type="range" id="animation-speed" />
+          </div>
+
+          <div class="checkbox-wrapper mode-ui mode-a-ui control-row-2grid">
+            <label for="vertical-waves">vertical waves</label>
+            <input type="checkbox" id="vertical-waves" />
+          </div>
+
+          <div class="control-row-2grid">
+            <label for="x-animation-mode">x-animation</label>
+            <select id="x-animation-mode">
+              <option value="none">none</option>
+              <option value="sin">sin</option>
+              <option value="tan">tan</option>
+            </select>
+          </div>
+
+          <div class="control-row mode-ui mode-a-ui">
+            <label for="x-amplitude">x-amplitude</label>
+            <span id="x-amplitude-value">50</span>
+            <input type="range" id="x-amplitude" />
+          </div>
+        </div>
+        <div class="control-group">
+          <h3>Export</h3>
+          <div class="control-row-2grid">
+            <label for="format-select">format</label>
+            <select id="format-select">
+              <option value="gif">GIF</option>
+              <option value="mp4" selected>MP4</option>
+              <option value="webm">WEBM</option>
+            </select>
+          </div>
+          <div class="control-row-2grid">
+            <label for="quality-select">quality</label>
+            <select id="quality-select">
+              <option value="1">Low</option>
+              <option value="5" selected>Medium</option>
+              <option value="10">High</option>
+            </select>
+          </div>
+
+          <div class="control-row-2grid">
+            <label>record</label>
+            <span id="record-time">00:00:00</span>
+            <button id="capture-btn">Start</button>
+            <button id="stop-btn" style="display: none">Stop</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="canvas-container"></div>
+      <input
+        type="file"
+        id="font-upload"
+        accept=".ttf, .otf"
+        style="display: none"
+      />
+    </div>
+  </body>
 </html>

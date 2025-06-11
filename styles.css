@@ -1,0 +1,373 @@
+@font-face {
+    font-family: "Monument";
+    src:
+      local("Monument"),
+      url("/fonts/MonumentGrotesk-Regular.woff") format("woff");
+}
+#start-screen {
+    position: fixed;
+    inset: 0;
+    background: white;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+    margin: 20px;
+    border: 2px solid black;
+}
+.start-content {
+    text-align: center;
+    align-items: center;
+    font-family: "Monument";
+}
+#start-button {
+    margin-top: 50px;
+    margin-left: 445px;
+    font-size:20px;
+    height: 40px;
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding-left: 12px;
+    padding-bottom: 25px;
+}
+#start-button:hover {
+    background: black;
+}
+.flipped{
+    display: inline-block;
+    transform: scaleX(-1);
+}
+h1{
+    margin-top: -280px;
+    margin-bottom: -120px;
+    font-size: 200px;
+}
+#copyright{
+    position: absolute;
+    margin-left: 460px;
+}
+* {
+    box-sizing: border-box;
+}
+body {
+    overflow: hidden;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+}
+#layout-grid {
+    display: flex;
+    margin: 20px;
+    border: 2px solid black;
+    height: calc(100vh - 40px);
+}
+#canvas-container {
+    flex: 2;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #ffffff;
+}
+.ui-container {
+    flex: 0 0 520px;
+    background-color: white;
+    border-right: 2px solid black;
+    padding: 0px 25px;
+    font-family: 'Monument', monospace;
+    font-weight: bold;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+}
+.headline {
+    display: block;
+    font-size: 34px;
+    padding-top: 25px;
+    margin-bottom: 40px;
+    line-height: 1;
+}
+.preset-controls {
+    display: grid;
+    grid-template-columns: 1fr auto auto auto;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid black;
+}
+.preset-controls button {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+}
+.preset-controls img {
+    padding: 2px;
+}
+.preset-controls button:hover {
+    background: black;
+}
+.control-group h3 {
+    font-size: 24px;
+    padding-bottom: 20px;
+    text-transform: uppercase;
+    line-height: 1;
+    margin: 0;
+}
+.control-group {
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid black;
+}
+.control-group:last-child {
+    border-bottom: none;
+}
+.control-row {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 10px;
+    align-items: center;
+    line-height: 50px;
+}
+.control-row-2grid {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0px;
+    align-items: center;
+    line-height: 50px;
+    font-size: 24px;
+}
+.control-row:last-child {
+    margin-bottom: 0;
+}
+.control-row label {
+    font-size: 24px;
+    height: 50px;
+    line-height: 25px;
+}
+.control-row-2grid label {
+    height: 50px;
+    line-height: 25px;
+}
+.control-row span {
+    min-width: 40px;
+    text-align: right;
+    font-size: 24px;
+    font-weight: bold;
+    height: 50px;
+    line-height: 25px;
+}
+
+input[type="text"] {
+    height: 40px;
+    width: 250px;
+    border: 2px solid black;
+    padding: 0 12px;
+}
+select {
+    height: 40px;
+    width: 150px;
+    border: 2px solid black;
+    padding: 0 12px;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 16px;
+}
+input[type="range"] {
+    -webkit-appearance: none;
+    height: 40px;
+    width: 150px;
+    background: white;
+    border: 2px solid black;
+    outline: none;
+    margin: 0;
+    
+}
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 40px;
+    background: black;
+    cursor: pointer;
+}
+input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: black;
+    cursor: pointer;
+    border: none;
+}
+.color-input-wrapper {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 10px;
+    align-items: center;
+    line-height: 50px;
+}
+.color-input-wrapper:last-child {
+    margin-bottom: 0;
+}
+.color-input-wrapper label {
+    font-size: 24px;
+    font-weight: bold;
+    height: 50px;
+    line-height: 25px;
+}
+.color-input-wrapper input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+  }
+  .color-input-wrapper input[type="color"]::-webkit-color-swatch {
+    border: none;
+  }
+  .color-input-wrapper input[type="color"]::-moz-color-swatch {
+    border: none;
+  }
+.color-label {
+    font-size: 24px;
+    font-weight: bold;
+    min-width: 40px;
+    text-align: right;
+    height: 50px;
+    line-height: 25px;
+}
+input[type="color"] {
+    width: 150px;
+    height: 40px;
+    border: 2px solid black;
+    background-color: white;
+    cursor: pointer;
+    padding: 0;
+}
+.control-row.font-row {
+    grid-template-columns: 1fr auto auto;
+}
+.font-upload-btn {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 2px solid black;
+    font-weight: bold;
+    cursor: pointer;
+}
+.font-upload-btn img {
+    padding-right: 4px;
+    padding-bottom: 4px;
+    padding: 1 4 4 1;
+}
+.font-upload-btn:hover {
+    background-color: black;
+    color: white;
+}
+.checkbox-wrapper {
+    align-items: center;
+    min-height: 40px;
+}
+.checkbox-wrapper input[type="checkbox"] {
+appearance: none;
+  -webkit-appearance: none;
+  background-color: white;
+  border: 2px solid black;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  margin-right: 0px;
+}
+.checkbox-wrapper input[type="checkbox"]:checked {
+    background-color: black;
+}
+.checkbox-wrapper label {
+    font-size: 24px;
+    height: 50px;
+    line-height: 25px;
+}
+button {
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    padding: 8px 15px;
+    font-family: 'Monument', monospace;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+button:hover {
+    background-color: black;
+    color: white;
+}
+.record-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    align-items: center;
+    min-height: 40px;
+}
+.record-row label {
+    font-size: 24px;
+    font-weight: bold;
+}
+#capture-btn {
+    height: 40px;
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 12px;
+    padding-bottom: 20px;
+}
+#stop-btn {
+    height: 40px;
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 12px;
+    padding-bottom: 20px;
+    margin-right: 10px;
+}
+#record-time {
+    display: none;
+  }
+#font-upload {
+    display: none;
+}
+.mode-ui {
+    display: none;
+}
+.mode-a-ui {
+    display: block;
+}
+.p5c-container {
+    display: none !important;
+}
+
+@media (max-width: 1200px) {
+    .ui-container {
+        flex: 0 0 420px;
+    }
+    .control-row {
+        grid-template-columns: 1fr 35px auto;
+        gap: 8px;
+    }
+    .control-row span {
+        min-width: 35px;
+    }
+}

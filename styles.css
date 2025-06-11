@@ -2,7 +2,7 @@
     font-family: "Monument";
     src:
       local("Monument"),
-      url("/fonts/MonumentGrotesk-Regular.woff") format("woff");
+      url("fonts/MonumentGrotesk-Regular.woff") format("woff");
 }
 #start-screen {
     position: fixed;
